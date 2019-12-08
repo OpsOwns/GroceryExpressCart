@@ -1,9 +1,6 @@
-﻿using FluentAssertions;
-using GroceryExpressCart.Common.CustomException;
+﻿using GroceryExpressCart.Common.CustomException;
+using GroceryExpressCart.Common.Extension;
 using GroceryExpressCart.Core.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace GroceryExpressCart.Tests.Domain
@@ -13,7 +10,9 @@ namespace GroceryExpressCart.Tests.Domain
         [Fact]
         public void EmailShouldBeThrowExceptionTest()
         {
-            Assert.Throws<DomainException>(() => Email.Create(string.Empty));
+            var exception = Assert.Throws<DomainException>(() =>
+            Email.Create(string.Empty));
+            Assert.Equal(nameof(Parameters.INVALID_EMAIL), exception.Code);
         }
     }
 }
