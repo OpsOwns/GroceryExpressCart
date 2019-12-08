@@ -7,10 +7,7 @@ namespace GroceryExpressCart.Common.CustomException
         protected BaseException()
         {
         }
-        protected BaseException(string code)
-        {
-            Code = code;
-        }
+        protected BaseException(string code) => Code = code;
         protected BaseException(string message, Exception innerException) : base(message, innerException)
         {
         }
@@ -25,9 +22,6 @@ namespace GroceryExpressCart.Common.CustomException
         {
         }
         protected BaseException(Exception innerException, string code, string message, params object[] args)
-            : base(string.Format(message, args), innerException)
-        {
-            Code = code;
-        }
+            : base(string.Format(message, args), innerException) => Code = code;
     }
 }

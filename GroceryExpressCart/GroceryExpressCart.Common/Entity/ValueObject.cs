@@ -15,8 +15,8 @@ namespace GroceryExpressCart.Common.Entity
         private bool EqualsCore(ValueObject<T> other) =>
             GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
         public override int GetHashCode() =>
-             GetEqualityComponents()
-                .Aggregate(1, (current, obj) => (current * 23) + (obj?.GetHashCode() ?? 0));
+             HashCodeGenerator.Of(GetEqualityComponents()
+                .Aggregate(1, (current, obj) => (current * 23) + (obj?.GetHashCode() ?? 0)));
         public static bool operator ==(ValueObject<T> a, ValueObject<T> b)
         {
             if (a is null && b is null)
