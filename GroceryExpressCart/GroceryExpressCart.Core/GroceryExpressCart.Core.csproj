@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Repositories\" />
-    <Folder Include="ValueObjects\" />
   </ItemGroup>
 
   <ItemGroup>
