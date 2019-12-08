@@ -2,4 +2,4 @@
 Application for delivery food for your company
 
 
-status IN-PROGRESS :fire:
+status: IN-PROGRESS :fire:
