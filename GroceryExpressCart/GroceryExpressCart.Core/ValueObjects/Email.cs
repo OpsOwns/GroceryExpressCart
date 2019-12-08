@@ -1,4 +1,5 @@
-﻿using GroceryExpressCart.Common.Entity;
+﻿using GroceryExpressCart.Common.CustomException;
+using GroceryExpressCart.Common.Entity;
 using GroceryExpressCart.Common.Extension;
 using System;
 using System.Collections.Generic;
@@ -14,17 +15,14 @@ namespace GroceryExpressCart.Core.ValueObjects
         public static Email Create(string email)
         {
             if (email.IsEmpty())
-            {//TODO
-            }
+                throw new DomainException(nameof(Parameters.INVALID_EMAIL));
             return new Email(email);
         }
         protected override IEnumerable<object> GetEqualityComponents()
         {
-            throw new NotImplementedException();
+            yield return Value;
         }
-        public override int GetHashCode()
-        {
-            return HashCodeGenerator.Of(Value);
-        }
+        public override int GetHashCode() =>
+            HashCodeGenerator.Of(Value);
     }
 }
