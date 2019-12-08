@@ -4,8 +4,8 @@ namespace GroceryExpressCart.Common.Entity
 {
     public class Entity
     {
-        public DateTime DateCreate { get; } = DateTime.UtcNow.Date;
-        public DateTime DateModify { get; protected set; } = DateTime.UtcNow.Date;
+        public DateTime CreatedAt { get; } = DateTime.UtcNow.Date;
+        public DateTime ModifyAt { get; protected set; } = DateTime.UtcNow.Date;
         public int Id { get; protected set; }
         public override bool Equals(object obj)
         {
@@ -22,7 +22,7 @@ namespace GroceryExpressCart.Common.Entity
 
             return Id == other.Id;
         }
-        public void SetDateModify(DateTime date) => DateModify = date;
+        public void SetDateModify(DateTime date) => ModifyAt = date;
         public static bool operator ==(Entity a, Entity b)
         {
             if (a is null && b is null)
