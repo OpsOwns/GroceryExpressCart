@@ -1,6 +1,6 @@
 ﻿namespace GroceryExpressCart.Core.Domain
 {
-    public class Account
+    public class MemberShip
     {
     }
 }
