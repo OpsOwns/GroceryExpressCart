@@ -16,7 +16,7 @@ namespace GroceryExpressCart.Core.ValueObjects
         public static Login Create(string login)
         {
             if (login.IsEmpty() && !login.Length(3,12))
-                throw new DomainException(nameof(Parameters.INVALID_LOGIN));
+                throw new GroceryException(nameof(Parameters.INVALID_LOGIN));
             return new Login(login);
         }
         public override int GetHashCode() =>

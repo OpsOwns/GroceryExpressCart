@@ -11,7 +11,7 @@ namespace GroceryExpressCart.Tests.Domain
         [Fact]
         public void EmailShouldBeThrowExceptionTest()
         {
-            var exception = Assert.Throws<DomainException>(() =>
+            var exception = Assert.Throws<GroceryException>(() =>
             Email.Create(string.Empty));
             Assert.Equal(nameof(Parameters.INVALID_EMAIL), exception.Code);
         }
