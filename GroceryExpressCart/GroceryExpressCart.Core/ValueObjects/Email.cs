@@ -15,7 +15,7 @@ namespace GroceryExpressCart.Core.ValueObjects
         public static Email Create(string email)
         {
             if (email.IsEmpty())
-                throw new DomainException(nameof(Parameters.INVALID_EMAIL));
+                throw new GroceryException(nameof(Parameters.INVALID_EMAIL));
             return new Email(email);
         }
         protected override IEnumerable<object> GetEqualityComponents()
