@@ -7,19 +7,19 @@ namespace GroceryExpressCart.Core.ValueObjects
 {
     public class Login : ValueObject<Login>
     {
-        public string Value { get; }
-        private Login(string value) => Value = value;
+        public string LoginValue { get; }
+        private Login(string value) => LoginValue = value;
         protected override IEnumerable<object> GetEqualityComponents()
         {
-            yield return Value;
+            yield return LoginValue;
         }
-        public static Login Create(string login)
+        public static Result<Login> Create(string login)
         {
-            if (login.IsEmpty() && !login.Length(3,12))
+            if (login.IsEmpty() && !login.Length(3, 12))
                 throw new GroceryException(nameof(Parameters.INVALID_LOGIN));
-            return new Login(login);
+            return Result.Ok(new Login(login));
         }
         public override int GetHashCode() =>
-            HashCodeGenerator.Of(Value);
+            HashCodeGenerator.Of(LoginValue);
     }
 }
