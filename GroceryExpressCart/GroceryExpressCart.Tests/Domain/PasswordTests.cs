@@ -29,9 +29,9 @@ namespace GroceryExpressCart.Tests.Domain
         [Fact]
         public void ShouldBePasswordHashedTest()
         {
-            PasswordHasher passwordHasher = new PasswordHasher(new PasswordSettings { SecretKey = "efswerwer545345!!" });
+            PasswordHasher passwordHasher = new PasswordHasher(new PasswordSettings { SecretKey =  "$2y$12$1YIOnDli2aDPGVSrpCBEt.tjEgcK1tX6.a/6yVp9l4h6Crc9UHeHW" });
             var result = Password.Create(passwordHasher.HashPassword("Marian"));
-            Assert.NotNull(result.Value.Value);
+            Assert.NotNull(result.Value.PasswordValue);
         }
     }
 }

@@ -9,20 +9,20 @@ namespace GroceryExpressCart.Core.ValueObjects
 {
     public class Email : ValueObject<Email>
     {
-        public string Value { get; }
-        private Email(string email) => Value = email;
+        public string EmailValue { get; }
+        private Email(string email) => EmailValue = email;
 
-        public static Email Create(string email)
+        public static Result<Email> Create(string email)
         {
             if (email.IsEmpty())
                 throw new GroceryException(nameof(Parameters.INVALID_EMAIL));
-            return new Email(email);
+            return Result.Ok(new Email(email));
         }
         protected override IEnumerable<object> GetEqualityComponents()
         {
-            yield return Value;
+            yield return EmailValue;
         }
         public override int GetHashCode() =>
-            HashCodeGenerator.Of(Value);
+            HashCodeGenerator.Of(EmailValue);
     }
 }

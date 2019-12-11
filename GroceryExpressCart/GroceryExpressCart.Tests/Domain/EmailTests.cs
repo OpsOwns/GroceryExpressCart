@@ -20,7 +20,7 @@ namespace GroceryExpressCart.Tests.Domain
         public void EmailShouldBeNotNullTest()
         {
             var email = Email.Create("email@o2.pl");
-            email.Value.Should().NotBeNullOrEmpty();
+            email.Value.EmailValue.Should().NotBeNullOrEmpty();
         }
         [Fact]
         public void EmailsShouldBeSameTest()
