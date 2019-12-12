@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.4" />
     <PackageReference Include="BCrypt.Net-Next" Version="3.2.1" />
   </ItemGroup>
 

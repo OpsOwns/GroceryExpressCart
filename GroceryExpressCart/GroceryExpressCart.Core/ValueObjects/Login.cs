@@ -7,7 +7,9 @@ namespace GroceryExpressCart.Core.ValueObjects
 {
     public class Login : ValueObject<Login>
     {
-        public string LoginValue { get; }
+        public static Login LoginEmpty => new Login(nameof(Parameters.EMPTY));
+        public string LoginValue { get; private set; }
+        protected Login(){}
         private Login(string value) => LoginValue = value;
         protected override IEnumerable<object> GetEqualityComponents()
         {
@@ -16,7 +18,7 @@ namespace GroceryExpressCart.Core.ValueObjects
         public static Result<Login> Create(string login)
         {
             if (login.IsEmpty() && !login.Length(3, 12))
-                throw new GroceryException(nameof(Parameters.INVALID_LOGIN));
+                return Result.FailEmpty(nameof(Parameters.INVALID_LOGIN), LoginEmpty);
             return Result.Ok(new Login(login));
         }
         public override int GetHashCode() =>
