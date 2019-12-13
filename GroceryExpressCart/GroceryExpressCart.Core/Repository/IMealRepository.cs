@@ -1,12 +1,10 @@
 ﻿using GroceryExpressCart.Core.Domain;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace GroceryExpressCart.Core.Repositories
+namespace GroceryExpressCart.Core.Repository
 {
-    public interface IMealRepository
+    public interface IMealRepository : IRepository
     {
         Task Add(Meal meal);
         Task<IEnumerable<Meal>> GetMeals();

@@ -1,11 +1,8 @@
-﻿using GroceryExpressCart.Common.CustomException;
-using GroceryExpressCart.Common.Entity;
+﻿using GroceryExpressCart.Common.Entity;
 using GroceryExpressCart.Common.Extension;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace GroceryExpressCart.Core.ValueObjects
+namespace GroceryExpressCart.Core.ValueObject
 {
     public class Email : ValueObject<Email>
     {

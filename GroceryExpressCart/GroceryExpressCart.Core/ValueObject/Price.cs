@@ -3,14 +3,12 @@ using GroceryExpressCart.Common.Extension;
 using System;
 using System.Collections.Generic;
 
-namespace GroceryExpressCart.Core.ValueObjects
+namespace GroceryExpressCart.Core.ValueObject
 {
     public class Price : ValueObject<Price>
     {
         public decimal Money { get; }
-        protected Price()
-        {
-        }
+        protected Price(){}
         private Price(decimal money) => Money = money;
         public static Result<Price> Create(decimal money)
         {

@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroceryExpressCart.API", "GroceryExpressCart.API\GroceryExpressCart.API.csproj", "{67CEFF9F-8A43-4FB7-B538-DE4CC964732F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryExpressCart.Core", "GroceryExpressCart.Core\GroceryExpressCart.Core.csproj", "{BDE2935B-80F6-4A7D-8349-3D76C13D7E95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroceryExpressCart.Core", "GroceryExpressCart.Core\GroceryExpressCart.Core.csproj", "{BDE2935B-80F6-4A7D-8349-3D76C13D7E95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryExpressCart.Common", "GroceryExpressCart.Common\GroceryExpressCart.Common.csproj", "{D1F14E2F-B01B-4BE7-92D7-40163EF9A080}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroceryExpressCart.Common", "GroceryExpressCart.Common\GroceryExpressCart.Common.csproj", "{D1F14E2F-B01B-4BE7-92D7-40163EF9A080}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryExpressCart.Tests", "GroceryExpressCart.Tests\GroceryExpressCart.Tests.csproj", "{346D1BB2-7F5C-4EF6-AB6E-F5854C916145}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroceryExpressCart.Tests", "GroceryExpressCart.Tests\GroceryExpressCart.Tests.csproj", "{346D1BB2-7F5C-4EF6-AB6E-F5854C916145}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryExpressCart.Infrastructure", "GroceryExpressCart.Infrastructure\GroceryExpressCart.Infrastructure.csproj", "{9D23F034-5C94-4E64-B5D4-7A2C7D4A234D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{346D1BB2-7F5C-4EF6-AB6E-F5854C916145}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{346D1BB2-7F5C-4EF6-AB6E-F5854C916145}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{346D1BB2-7F5C-4EF6-AB6E-F5854C916145}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D23F034-5C94-4E64-B5D4-7A2C7D4A234D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D23F034-5C94-4E64-B5D4-7A2C7D4A234D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D23F034-5C94-4E64-B5D4-7A2C7D4A234D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D23F034-5C94-4E64-B5D4-7A2C7D4A234D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

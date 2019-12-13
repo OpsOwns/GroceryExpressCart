@@ -1,15 +1,14 @@
-﻿using System.Collections.Generic;
-using GroceryExpressCart.Common.CustomException;
-using GroceryExpressCart.Common.Entity;
+﻿using GroceryExpressCart.Common.Entity;
 using GroceryExpressCart.Common.Extension;
+using System.Collections.Generic;
 
-namespace GroceryExpressCart.Core.ValueObjects
+namespace GroceryExpressCart.Core.ValueObject
 {
     public class Login : ValueObject<Login>
     {
         public static Login LoginEmpty => new Login(nameof(Parameters.EMPTY));
-        public string LoginValue { get; private set; }
-        protected Login(){}
+        public string LoginValue { get; }
+        protected Login() { }
         private Login(string value) => LoginValue = value;
         protected override IEnumerable<object> GetEqualityComponents()
         {
