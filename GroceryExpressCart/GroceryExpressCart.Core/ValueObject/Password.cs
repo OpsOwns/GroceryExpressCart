@@ -2,13 +2,14 @@
 using GroceryExpressCart.Common.Extension;
 using System.Collections.Generic;
 
-namespace GroceryExpressCart.Core.ValueObjects
+namespace GroceryExpressCart.Core.ValueObject
 {
     public class Password : ValueObject<Password>
     {
         public string PasswordValue { get; }
         public static Password PasswordEmpty => new Password(nameof(Parameters.EMPTY));
         private Password(string value) => PasswordValue = value;
+        protected Password() { }
         public static Result<Password> Create(string password)
         {
             if (password.IsEmpty() || !password.Length(8, 120))

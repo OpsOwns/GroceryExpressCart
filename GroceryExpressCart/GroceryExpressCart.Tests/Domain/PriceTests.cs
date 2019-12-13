@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using GroceryExpressCart.Common.Extension;
-using GroceryExpressCart.Core.ValueObjects;
+using GroceryExpressCart.Core.ValueObject;
 using System.Collections.Generic;
 using Xunit;
 

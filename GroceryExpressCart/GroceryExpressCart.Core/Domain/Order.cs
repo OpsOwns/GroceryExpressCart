@@ -12,6 +12,8 @@ namespace GroceryExpressCart.Core.Domain
         public Meal Meal { get; }
         public MemberShip Person { get; }
         public DateTime DateOrder { get; private set; }
+        public int MealId { get; private set; }
+        public int MemberShipId { get; private set; }
         private Order() {}
         public Order(Meal meal, MemberShip person)
         {

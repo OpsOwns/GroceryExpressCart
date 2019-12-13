@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using GroceryExpressCart.Common.CustomException;
 using GroceryExpressCart.Common.Extension;
-using GroceryExpressCart.Core.ValueObjects;
+using GroceryExpressCart.Core.ValueObject;
 using Xunit;
 
 namespace GroceryExpressCart.Tests.Domain

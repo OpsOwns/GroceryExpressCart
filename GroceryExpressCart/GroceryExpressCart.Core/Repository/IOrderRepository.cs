@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GroceryExpressCart.Core.Repositories
+namespace GroceryExpressCart.Core.Repository
 {
-    public interface IOrderRepository
+    public interface IOrderRepository : IRepository
     {
         Task Add(Order order);
         Task<IEnumerable<Order>> GetOrders();

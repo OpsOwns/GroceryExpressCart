@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using GroceryExpressCart.Common.Security;
 using GroceryExpressCart.Core.Domain;
-using GroceryExpressCart.Core.ValueObjects;
+using GroceryExpressCart.Core.ValueObject;
 using System;
 using System.Collections.Generic;
 using System.Text;

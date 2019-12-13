@@ -1,5 +1,6 @@
 ﻿using GroceryExpressCart.Common.Entity;
-using GroceryExpressCart.Core.ValueObjects;
+using GroceryExpressCart.Core.ValueObject;
+using System.Collections.Generic;
 
 namespace GroceryExpressCart.Core.Domain
 {
@@ -7,6 +8,7 @@ namespace GroceryExpressCart.Core.Domain
     {
         public string MealName { get; }
         public Price Price { get; }
+        public ICollection<Order> Orders { get; }
         private Meal() { }
         public Meal(string mealName, Price price)
         {

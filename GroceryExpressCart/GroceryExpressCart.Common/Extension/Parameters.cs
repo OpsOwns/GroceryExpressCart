@@ -10,5 +10,8 @@ namespace GroceryExpressCart.Common.Extension
         public static string INVALID_PASSWORD;
         public static string INVALID_HASH_PASSWORD;
         public static string INVALID_VALUE_MONEY;
+        public static string MSSQL_INT = "INT";
+        public static string MSSQL_DATE = "DATE";
+        public static string MSSQL_SMALLDATETIME = "SMALLDATETIME";
     }
 }
