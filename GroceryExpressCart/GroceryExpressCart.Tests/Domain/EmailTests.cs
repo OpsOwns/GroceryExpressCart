@@ -9,11 +9,11 @@ namespace GroceryExpressCart.Tests.Domain
     public class EmailTests
     {
         [Fact]
-        public void EmailShouldBeThrowExceptionTest()
+        public void EmailShouldBeFailTest()
         {
-            var exception = Assert.Throws<GroceryException>(() =>
-            Email.Create(string.Empty));
-            Assert.Equal(nameof(Parameters.INVALID_EMAIL), exception.Code);
+            var email = Email.Create(string.Empty);
+            email.Failure.Should().Be(true);
+            email.Error.Should().Be(nameof(Parameters.INVALID_EMAIL));
         }
 
         [Fact]
@@ -27,8 +27,8 @@ namespace GroceryExpressCart.Tests.Domain
         {
             var email1 = Email.Create("email@o2.pl");
             var email2 = Email.Create("email@o2.pl");
-            var expectedValue = email1.GetHashCode().Equals(email2.GetHashCode());
-            var expectedValue2 = email1 == email2;
+            var expectedValue = email1.Value.GetHashCode().Equals(email2.Value.GetHashCode());
+            var expectedValue2 = email1.Value == email2.Value;
             Assert.True(expectedValue);
             Assert.True(expectedValue2);
         }

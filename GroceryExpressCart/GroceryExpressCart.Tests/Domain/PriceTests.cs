@@ -25,9 +25,9 @@ namespace GroceryExpressCart.Tests.Domain
         public static IEnumerable<object[]> MultiplyMoneyValues =>
         new List<object[]>
         {
-            new object[] { 5.2M, 2, 10,4M },
-            new object[] { 5.0M, 3, 15.0M }
-           // new object[] { 15.0M, 15, 225.0M },
+            new object[] { 5.2M, 2, 10.4M },
+            new object[] { 5.0M, 3, 15.0M },
+           new object[] { 15.0M, 15, 225.0M }
         };
         [Fact]
         public void PriceShouldBeNotNullTest()
