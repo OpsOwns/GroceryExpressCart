@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace GroceryExpressCart.Common.SeedWork
 {
-    public class GlobalHandleMidleware
+    public class GlobalHandleMiddleware
     {
         private readonly RequestDelegate _next;
-        public GlobalHandleMidleware(RequestDelegate next)
+        public GlobalHandleMiddleware(RequestDelegate next)
         {
             _next = next;
         }

@@ -19,26 +19,26 @@ namespace GroceryExpressCart.Infrastructure.Handler
     {
         IMemberShipRepository _memberShipRepository;
         IPasswordHasher _passwordHasher;
-        ICheckUserHandler _checkUserHandler;
-        public CreateUserHandler(IMemberShipRepository memberShipRepository, IPasswordHasher passwordHasher, ICheckUserHandler checkUserHandler)
+        public CreateUserHandler(IMemberShipRepository memberShipRepository, IPasswordHasher passwordHasher)
         {
             _memberShipRepository = memberShipRepository;
             _passwordHasher = passwordHasher;
-            _checkUserHandler = checkUserHandler;
         }
         public async Task<Unit> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var email = Email.Create(request.Email);
             var password = Password.Create(_passwordHasher.HashPassword(request.Password));
+            var email = Email.Create(request.Email);
             var login = Login.Create(request.Login);
             var result = Result.Combine(email, password, login);
             if (result.Failure)
                 throw new GroceryException(result.Error);
-            if (await _checkUserHandler.Handle(new CheckUserQuery(login.Value.LoginValue, email.Value.EmailValue), CancellationToken.None))
+            if (await IsUserExists(login.Value, email.Value))
                 throw new GroceryException(nameof(Parameters.USER_EXISTS));
             MemberShip memberShip = new MemberShip(email.Value, login.Value, password.Value);
             await _memberShipRepository.Add(memberShip);
             return Unit.Value;
         }
+        private async Task<bool> IsUserExists(Login login, Email email) =>
+            await _memberShipRepository.FindUser(login, email);
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using GroceryExpressCart.Common.SeedWork;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 
 namespace GroceryExpressCart.Common.Extension
 {
@@ -13,5 +15,7 @@ namespace GroceryExpressCart.Common.Extension
             configuration.GetSection(section).Bind(model);
             return model;
         }
+        public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder builder)
+       => builder.UseMiddleware<GlobalHandleMiddleware>();
     }
 }

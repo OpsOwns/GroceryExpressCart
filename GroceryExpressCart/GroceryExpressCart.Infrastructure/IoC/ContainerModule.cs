@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using GroceryExpressCart.Common.Security;
 using GroceryExpressCart.Infrastructure.IoC.Modules;
+using GroceryExpressCart.Infrastructure.Mapper;
 using Microsoft.Extensions.Configuration;
 
 namespace GroceryExpressCart.Infrastructure.IoC
@@ -17,6 +18,7 @@ namespace GroceryExpressCart.Infrastructure.IoC
             builder.RegisterModule(new SettingsModule(_configuration));
             builder.RegisterModule<RepositoryModule>();
             builder.RegisterModule<MediatrModule>();
+            builder.RegisterInstance(AutoMapperConfig.Initialize()).SingleInstance();
         }
     }
 }
