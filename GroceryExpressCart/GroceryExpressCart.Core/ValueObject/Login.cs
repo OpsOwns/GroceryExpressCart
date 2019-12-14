@@ -7,7 +7,7 @@ namespace GroceryExpressCart.Core.ValueObject
     public class Login : ValueObject<Login>
     {
         public static Login LoginEmpty => new Login(nameof(Parameters.EMPTY));
-        public string LoginValue { get; }
+        public string LoginValue { get; protected set; }
         protected Login() { }
         private Login(string value) => LoginValue = value;
         protected override IEnumerable<object> GetEqualityComponents()

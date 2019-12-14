@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GroceryExpressCart.Common.CustomException
+namespace GroceryExpressCart.Common.Exceptions
 {
     public class GroceryException : BaseException
     {

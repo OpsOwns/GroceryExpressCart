@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using GroceryExpressCart.Common.CustomException;
 using GroceryExpressCart.Common.Extension;
 using GroceryExpressCart.Core.ValueObject;
 using Xunit;

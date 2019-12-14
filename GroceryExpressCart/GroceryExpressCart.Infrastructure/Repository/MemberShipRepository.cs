@@ -1,5 +1,6 @@
 ﻿using GroceryExpressCart.Core.Domain;
 using GroceryExpressCart.Core.Repository;
+using GroceryExpressCart.Core.ValueObject;
 using GroceryExpressCart.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
@@ -19,5 +20,9 @@ namespace GroceryExpressCart.Infrastructure.Repository
             await _context.MemberShip.SingleOrDefaultAsync(value => value.Login.LoginValue == login && value.Password.PasswordValue == password);
         public async Task<MemberShip> GetMemberShipById(int memberShipId) =>
             await _context.MemberShip.FirstOrDefaultAsync(value => value.Id == memberShipId);
+        public async Task<bool> FindUser(Login login, Email email) =>
+            await _context.MemberShip.AnyAsync(user => user.Login.LoginValue == login.LoginValue ||
+            user.Email.EmailValue == email.EmailValue);
+
     }
 }

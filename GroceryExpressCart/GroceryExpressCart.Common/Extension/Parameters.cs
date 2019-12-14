@@ -13,5 +13,6 @@ namespace GroceryExpressCart.Common.Extension
         public static string MSSQL_INT = "INT";
         public static string MSSQL_DATE = "DATE";
         public static string MSSQL_SMALLDATETIME = "SMALLDATETIME";
+        public static string USER_EXISTS;
     }
 }
