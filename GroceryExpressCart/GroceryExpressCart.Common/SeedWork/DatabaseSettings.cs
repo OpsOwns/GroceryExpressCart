@@ -1,4 +1,4 @@
-﻿namespace GroceryExpressCart.Common.Settings
+﻿namespace GroceryExpressCart.Common.SeedWork
 {
     public class DatabaseSettings
     {

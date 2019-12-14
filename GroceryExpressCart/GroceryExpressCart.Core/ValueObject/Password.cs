@@ -6,7 +6,7 @@ namespace GroceryExpressCart.Core.ValueObject
 {
     public class Password : ValueObject<Password>
     {
-        public string PasswordValue { get; }
+        public string PasswordValue { get; protected set; }
         public static Password PasswordEmpty => new Password(nameof(Parameters.EMPTY));
         private Password(string value) => PasswordValue = value;
         protected Password() { }

@@ -6,7 +6,7 @@ namespace GroceryExpressCart.Core.ValueObject
 {
     public class Email : ValueObject<Email>
     {
-        public string EmailValue { get; }
+        public string EmailValue { get; protected set; }
         public static Email EmailEmpty => new Email(nameof(Parameters.EMPTY));
         protected Email() { }
         private Email(string email) => EmailValue = email;

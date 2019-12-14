@@ -1,4 +1,4 @@
-﻿using GroceryExpressCart.Common.Settings;
+﻿using GroceryExpressCart.Common.SeedWork;
 using GroceryExpressCart.Core.Domain;
 using Microsoft.EntityFrameworkCore;
 

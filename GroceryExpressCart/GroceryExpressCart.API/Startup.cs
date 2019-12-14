@@ -1,6 +1,8 @@
 using Autofac;
+using GroceryExpressCart.Common.Exceptions;
 using GroceryExpressCart.Infrastructure.Database;
 using GroceryExpressCart.Infrastructure.IoC;
+using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -15,13 +17,16 @@ namespace GroceryExpressCart.API
         {
             Configuration = configuration;
         }
-        public IConfiguration Configuration { get; }      
+        public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
             services.AddEntityFrameworkSqlServer().
                AddEntityFrameworkInMemoryDatabase().
                AddDbContext<GroceryContext>();
+            services.AddProblemDetails(details =>
+   details.Map<GroceryValidationException>(exception => new InvalidCommandProblemDetails(exception)));
+           // services.AddMiddlewareAnalysis();
         }
         public void ConfigureContainer(ContainerBuilder builder) =>
            builder.RegisterModule(new ContainerModule(Configuration));

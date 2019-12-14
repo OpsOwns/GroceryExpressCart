@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using GroceryExpressCart.Common.Extension;
 using GroceryExpressCart.Common.Security;
-using GroceryExpressCart.Common.Settings;
+using GroceryExpressCart.Common.SeedWork;
 using Microsoft.Extensions.Configuration;
 using Module = Autofac.Module;
 

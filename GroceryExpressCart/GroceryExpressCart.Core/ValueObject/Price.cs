@@ -7,7 +7,7 @@ namespace GroceryExpressCart.Core.ValueObject
 {
     public class Price : ValueObject<Price>
     {
-        public decimal Money { get; }
+        public decimal Money { get; protected set; }
         protected Price(){}
         private Price(decimal money) => Money = money;
         public static Result<Price> Create(decimal money)

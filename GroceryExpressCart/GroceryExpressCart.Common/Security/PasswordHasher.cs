@@ -1,4 +1,4 @@
-﻿using GroceryExpressCart.Common.CustomException;
+﻿using GroceryExpressCart.Common.Exceptions;
 using GroceryExpressCart.Common.Extension;
 namespace GroceryExpressCart.Common.Security
 {
