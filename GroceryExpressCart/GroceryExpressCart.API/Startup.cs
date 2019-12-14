@@ -1,4 +1,5 @@
 using Autofac;
+using GroceryExpressCart.Infrastructure.Database;
 using GroceryExpressCart.Infrastructure.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,6 +19,9 @@ namespace GroceryExpressCart.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddEntityFrameworkSqlServer().
+               AddEntityFrameworkInMemoryDatabase().
+               AddDbContext<GroceryContext>();
         }
         public void ConfigureContainer(ContainerBuilder builder) =>
            builder.RegisterModule(new ContainerModule(Configuration));
