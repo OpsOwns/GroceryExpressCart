@@ -15,5 +15,6 @@ namespace GroceryExpressCart.Common.Extension
         public static string MSSQL_SMALLDATETIME = "SMALLDATETIME";
         public static string USER_EXISTS;
         public static string INVALID_USER;
+        public static string CREATED_USER;
     }
 }

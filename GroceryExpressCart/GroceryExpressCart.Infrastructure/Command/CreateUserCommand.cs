@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using GroceryExpressCart.Common.Entity;
+using MediatR;
 
 namespace GroceryExpressCart.Infrastructure.Command
 {
-    public class CreateUserCommand : IRequest
+    public class CreateUserCommand : IRequest<Result>
     {
         public string Login { get; }
         public string Password { get; }
