@@ -13,19 +13,19 @@ using MediatR;
 
 namespace GroceryExpressCart.Infrastructure.Handler
 {
-    public class LoginUserHandler : IRequestHandler<LoginUserQuery, LoginUserFoundDTO>
+    public class LoginUserHandler : IRequestHandler<LoginUserQuery, Result<LoginUserFoundDTO>>
     {
         private readonly IMemberShipRepository _memberShipRepository;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IMapper _mapper;
-        public LoginUserHandler(IMemberShipRepository memberShipRepository, 
+        public LoginUserHandler(IMemberShipRepository memberShipRepository,
             IPasswordHasher passwordHasher, IMapper mapper)
         {
             _memberShipRepository = memberShipRepository;
             _passwordHasher = passwordHasher;
             _mapper = mapper;
         }
-        public async Task<LoginUserFoundDTO> Handle(LoginUserQuery request, CancellationToken cancellationToken)
+        public async Task<Result<LoginUserFoundDTO>> Handle(LoginUserQuery request, CancellationToken cancellationToken)
         {
             var login = Login.Create(request.Login);
             var password = Password.Create(_passwordHasher.HashPassword(request.Password));
@@ -33,9 +33,9 @@ namespace GroceryExpressCart.Infrastructure.Handler
             if (result.Failure)
                 throw new GroceryException(result.Error);
             var user = await _memberShipRepository.GetMemberShipByLoginPassword(login.Value.LoginValue, password.Value.PasswordValue);
-            if (user is null)
-                throw new GroceryException(nameof(Parameters.INVALID_USER));
-            return _mapper.Map<LoginUserFoundDTO>(user);
+            return user is null
+                ? Result.Fail<LoginUserFoundDTO>(nameof(Parameters.INVALID_USER))
+                : Result.Ok(_mapper.Map<LoginUserFoundDTO>(user));
         }
     }
 }
