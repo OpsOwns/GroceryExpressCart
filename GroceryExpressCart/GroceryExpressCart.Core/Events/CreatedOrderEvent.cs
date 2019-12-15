@@ -7,7 +7,6 @@ namespace GroceryExpressCart.Core.Events
     {
         public DateTime InvokedAt { get; }
         public string Value { get; }
-
         public CreatedOrderEvent(DateTime date, string value)
         {
             InvokedAt = date;

@@ -18,7 +18,7 @@ namespace GroceryExpressCart.Core.Domain
             Email = email;
             Login = login;
             Password = password;
-            AddDomainEvent(new CreatedAccountEvent(DateTime.Now, "Created Account"));
+            AddDomainEvent(new CreatedAccountEvent(DateTime.Now, nameof(EventMessage.CREATED_USER)));
         }
         public override int GetHashCode() => HashCodeGenerator.Of(Login).And(Password).And(Email);
     }

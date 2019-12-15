@@ -15,6 +15,7 @@ namespace GroceryExpressCart.Infrastructure.Database
         public DbSet<MemberShip> MemberShip { get; set; }
         public DbSet<Meal> Meal { get; set; }
         public DbSet<Order> Order { get; set; }
+        public DbSet<SystemNotification> SystemNotification { get; set; }
         #endregion
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,6 +31,7 @@ namespace GroceryExpressCart.Infrastructure.Database
             modelBuilder.ApplyConfiguration(new MealConfiguration());
             modelBuilder.ApplyConfiguration(new MemberShipConfiguration());
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new SystemNotificationConfiguration());
         }
     }
 }
