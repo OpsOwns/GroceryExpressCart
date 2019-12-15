@@ -13,6 +13,9 @@ namespace GroceryExpressCart.Infrastructure.Database
             builder.ToTable("SystemNotification", Schema.Grocery);
             builder.HasKey(key => key.Id);
             builder.Property(key => key.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            builder.Property(id => id.NotificationId).HasColumnName("SystemGuid").IsRequired();
+            builder.Ignore(modDate => modDate.ModifyAt);
+            builder.Ignore(modDate => modDate.CreatedAt);
             builder.Property(message => message.Message).HasColumnName("Statement").IsRequired();
             builder.Property(date => date.InvokedAt).HasColumnName("DateInvoke")
                 .HasColumnType(Parameters.MSSQL_DATE).IsRequired();

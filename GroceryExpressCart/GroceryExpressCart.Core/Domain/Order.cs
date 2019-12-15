@@ -1,5 +1,4 @@
 ﻿using GroceryExpressCart.Common.Entity;
-using GroceryExpressCart.Core.Events;
 using System;
 
 namespace GroceryExpressCart.Core.Domain
@@ -17,7 +16,6 @@ namespace GroceryExpressCart.Core.Domain
             Meal = meal;
             Person = person;
             DateOrder = DateTime.Now;
-            AddDomainEvent(new CreatedOrderEvent(DateTime.Now, nameof(EventMessage.CREATED_ORDER)));
         }
     }
 }

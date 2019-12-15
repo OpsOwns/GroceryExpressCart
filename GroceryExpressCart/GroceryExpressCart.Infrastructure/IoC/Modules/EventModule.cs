@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using GroceryExpressCart.Common.Entity;
-using GroceryExpressCart.Core.Domain;
 using System.Reflection;
 using Module = Autofac.Module;
 
@@ -18,10 +17,6 @@ namespace GroceryExpressCart.Infrastructure.IoC.Modules
             builder.RegisterType<DomainEventDispatcher>()
                     .As<IDomainEventDispatcher>()
                     .InstancePerLifetimeScope();
-
-            var assemblySecond = typeof(EventModule).GetTypeInfo().Assembly;
-            builder.RegisterAssemblyTypes(assemblySecond).Where(asign => asign.IsAssignableTo<IDomainEvent>())
-              .AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }
