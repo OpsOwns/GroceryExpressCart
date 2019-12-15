@@ -3,10 +3,13 @@ using GroceryExpressCart.Common.Exceptions;
 using GroceryExpressCart.Common.Extension;
 using GroceryExpressCart.Common.Security;
 using GroceryExpressCart.Core.Domain;
+using GroceryExpressCart.Core.Events;
 using GroceryExpressCart.Core.Repository;
 using GroceryExpressCart.Core.ValueObject;
 using GroceryExpressCart.Infrastructure.Command;
 using MediatR;
+using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,10 +19,12 @@ namespace GroceryExpressCart.Infrastructure.Handler
     {
         IMemberShipRepository _memberShipRepository;
         IPasswordHasher _passwordHasher;
-        public CreateUserHandler(IMemberShipRepository memberShipRepository, IPasswordHasher passwordHasher)
+        IDomainEventDispatcher _domainEventDispatcher;
+        public CreateUserHandler(IMemberShipRepository memberShipRepository, IPasswordHasher passwordHasher, IDomainEventDispatcher domainEventDispatcher)
         {
             _memberShipRepository = memberShipRepository;
             _passwordHasher = passwordHasher;
+            _domainEventDispatcher = domainEventDispatcher;
         }
         public async Task<Result> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
@@ -33,10 +38,9 @@ namespace GroceryExpressCart.Infrastructure.Handler
                 return Result.Fail(nameof(Parameters.USER_EXISTS));
             MemberShip memberShip = new MemberShip(email.Value, login.Value, password.Value);
             await _memberShipRepository.Add(memberShip);
-            return Result.Ok(nameof(Parameters.CREATED_USER));
+            await _domainEventDispatcher.DispatchAsync(memberShip.DomainEvents.ToArray());
+            return Result.Ok(nameof(EventMessage.CREATED_USER));
         }
-
-
         private async Task<bool> IsUserExists(Login login, Email email) =>
             await _memberShipRepository.FindUser(login, email);
     }

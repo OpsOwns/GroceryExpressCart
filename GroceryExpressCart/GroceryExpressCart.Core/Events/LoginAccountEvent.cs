@@ -3,11 +3,11 @@ using System;
 
 namespace GroceryExpressCart.Core.Events
 {
-    public class CreateMealEvent : IDomainEvent
+    public class LoginAccountEvent : IDomainEvent
     {
         public DateTime InvokedAt { get; }
         public string Value { get; }
-        public CreateMealEvent(DateTime date, string value)
+        public LoginAccountEvent(DateTime date, string value)
         {
             InvokedAt = date;
             Value = value;

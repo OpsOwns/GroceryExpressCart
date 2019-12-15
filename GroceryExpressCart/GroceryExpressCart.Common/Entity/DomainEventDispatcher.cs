@@ -19,7 +19,8 @@ namespace GroceryExpressCart.Common.Entity
                 }
                 var handlerType = typeof(IDomainEventHandler<>).MakeGenericType(@event.GetType());
                 _context.TryResolve(handlerType, out object handler);
-                await (Task)((dynamic)handler).HandleAsync(@event);
+                dynamic dynamicEvent = @event;
+                await (Task)((dynamic)handler).HandleAsync(Activator.CreateInstance(@event.GetType(), dynamicEvent.InvokedAt, dynamicEvent.Value));
             }
         }
     }
