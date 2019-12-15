@@ -38,7 +38,7 @@ namespace GroceryExpressCart.Infrastructure.Handler
                 return Result.Fail(nameof(Parameters.USER_EXISTS));
             MemberShip memberShip = new MemberShip(email.Value, login.Value, password.Value);
             await _memberShipRepository.Add(memberShip);
-            await _domainEventDispatcher.DispatchAsync(memberShip.DomainEvents.ToArray());
+            await _domainEventDispatcher.DispatchAsync(new CreatedAccountEvent(DateTime.Now, nameof(EventMessage.CREATED_USER)));
             return Result.Ok(nameof(EventMessage.CREATED_USER));
         }
         private async Task<bool> IsUserExists(Login login, Email email) =>
