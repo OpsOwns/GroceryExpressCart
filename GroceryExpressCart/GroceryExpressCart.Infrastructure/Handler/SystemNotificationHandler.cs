@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace GroceryExpressCart.Infrastructure.Handler
 {
-    public class SystemNotificationAccountHandler : IDomainEventHandler<CreatedAccountEvent>,
-                                                    IDomainEventHandler<LoginAccountEvent>
+    public class SystemNotificationHandler : IDomainEventHandler<CreatedAccountEvent>,
+                                             IDomainEventHandler<LoginAccountEvent>,
+                                             IDomainEventHandler<CreateMealEvent>
     {
         private readonly GroceryContext _context;
-        public SystemNotificationAccountHandler(GroceryContext context) => _context = context;
+        public SystemNotificationHandler(GroceryContext context) => _context = context;
         public async Task HandleAsync(CreatedAccountEvent value) =>
             await SystemNotify(new SystemNotification(value.Value, value.InvokedAt));
         public async Task HandleAsync(LoginAccountEvent value) =>
+            await SystemNotify(new SystemNotification(value.Value, value.InvokedAt));
+        public async Task HandleAsync(CreateMealEvent value) =>
             await SystemNotify(new SystemNotification(value.Value, value.InvokedAt));
         private async Task SystemNotify(SystemNotification notify)
         {
