@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using GroceryExpressCart.Core.Domain;
 using GroceryExpressCart.Infrastructure.DTO;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GroceryExpressCart.Infrastructure.Mapper
 {
