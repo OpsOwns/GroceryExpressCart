@@ -22,7 +22,7 @@ namespace GroceryExpressCart.API.Controllers
             var result = await _mediatr.Send(command);
             return result.Failure
           ? Conflict(result)
-          : (IActionResult)Created(string.Empty, result);
+          : (IActionResult)Created(string.Empty, result.Success);
         }
     }
 }

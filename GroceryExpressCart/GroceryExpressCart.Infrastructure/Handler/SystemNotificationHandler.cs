@@ -8,7 +8,8 @@ namespace GroceryExpressCart.Infrastructure.Handler
 {
     public class SystemNotificationHandler : IDomainEventHandler<CreatedAccountEvent>,
                                              IDomainEventHandler<LoginAccountEvent>,
-                                             IDomainEventHandler<CreateMealEvent>
+                                             IDomainEventHandler<CreateMealEvent>,
+                                             IDomainEventHandler<CreatedOrderEvent>
     {
         private readonly GroceryContext _context;
         public SystemNotificationHandler(GroceryContext context) => _context = context;
@@ -17,6 +18,8 @@ namespace GroceryExpressCart.Infrastructure.Handler
         public async Task HandleAsync(LoginAccountEvent value) =>
             await SystemNotify(new SystemNotification(value.Value, value.InvokedAt));
         public async Task HandleAsync(CreateMealEvent value) =>
+            await SystemNotify(new SystemNotification(value.Value, value.InvokedAt));
+        public async Task HandleAsync(CreatedOrderEvent value) =>
             await SystemNotify(new SystemNotification(value.Value, value.InvokedAt));
         private async Task SystemNotify(SystemNotification notify)
         {
