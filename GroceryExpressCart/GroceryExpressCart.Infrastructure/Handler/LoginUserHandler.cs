@@ -1,19 +1,17 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using GroceryExpressCart.Common.Entity;
 using GroceryExpressCart.Common.Exceptions;
 using GroceryExpressCart.Common.Extension;
 using GroceryExpressCart.Common.Security;
 using GroceryExpressCart.Core.Domain;
-using GroceryExpressCart.Core.Events;
 using GroceryExpressCart.Core.Repository;
 using GroceryExpressCart.Core.ValueObject;
 using GroceryExpressCart.Infrastructure.DTO;
 using GroceryExpressCart.Infrastructure.Query;
 using MediatR;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace GroceryExpressCart.Infrastructure.Handler
 {

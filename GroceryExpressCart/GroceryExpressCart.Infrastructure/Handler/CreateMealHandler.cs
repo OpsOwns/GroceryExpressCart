@@ -4,7 +4,6 @@ using GroceryExpressCart.Core.Domain;
 using GroceryExpressCart.Core.Repository;
 using GroceryExpressCart.Core.ValueObject;
 using GroceryExpressCart.Infrastructure.Command;
-using GroceryExpressCart.Infrastructure.Database;
 using MediatR;
 using System.Linq;
 using System.Threading;
