@@ -1,17 +1,17 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using GroceryExpressCart.Common.Entity;
 using GroceryExpressCart.Common.Exceptions;
 using GroceryExpressCart.Common.Extension;
 using GroceryExpressCart.Common.Security;
-using GroceryExpressCart.Core.Events;
+using GroceryExpressCart.Core.Domain;
 using GroceryExpressCart.Core.Repository;
 using GroceryExpressCart.Core.ValueObject;
 using GroceryExpressCart.Infrastructure.DTO;
 using GroceryExpressCart.Infrastructure.Query;
 using MediatR;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace GroceryExpressCart.Infrastructure.Handler
 {
@@ -36,8 +36,9 @@ namespace GroceryExpressCart.Infrastructure.Handler
             var result = Result.Combine(login, password);
             if (result.Failure)
                 throw new GroceryException(result.Error);
-            var user = await _memberShipRepository.GetMemberShipByLoginPassword(login.Value.LoginValue, password.Value.PasswordValue);
-            await _domainEventDispatcher.DispatchAsync(new LoginAccountEvent(DateTime.Now, nameof(EventMessage.LOGIN_USER)));
+            var memberShip = new MemberShip(login.Value, password.Value);
+            var user = await _memberShipRepository.GetMemberShipByLoginPassword(memberShip.Login.LoginValue, memberShip.Password.PasswordValue);
+            await _domainEventDispatcher.DispatchAsync(memberShip.DomainEvents.ToArray());
             return user is null
                 ? Result.Fail<LoginUserFoundDTO>(nameof(Parameters.INVALID_USER))
                 : Result.Ok(_mapper.Map<LoginUserFoundDTO>(user));

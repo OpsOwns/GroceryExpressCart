@@ -16,7 +16,7 @@ namespace GroceryExpressCart.Infrastructure.Database
             builder.Property(value => value.DateOrder).HasColumnName("OrderDate").IsRequired();
             builder.Property(date => date.CreatedAt).HasColumnType(Parameters.MSSQL_DATE).IsRequired();
             builder.Property(dateModify => dateModify.ModifyAt).HasColumnType(Parameters.MSSQL_DATE).IsRequired();
-            builder.HasOne(value => value.Person).WithMany(many => many.Orders).HasForeignKey(fKey => fKey.MemberShipId);
+            builder.HasOne(value => value.MemberShip).WithMany(many => many.Orders).HasForeignKey(fKey => fKey.MemberShipId);
             builder.HasOne(value => value.Meal).WithMany(many => many.Orders).HasForeignKey(fKey => fKey.MealId);
         }
     }

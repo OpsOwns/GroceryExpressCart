@@ -20,8 +20,8 @@ namespace GroceryExpressCart.API.Controllers
             var createUserCommand = new CreateUserCommand(userDTO.Login, userDTO.Password, userDTO.Email);
             var result = await _mediatr.Send(createUserCommand);
             return result.Failure
-                ? Conflict(result)
-                : (IActionResult)Created(string.Empty, result);
+                ? Conflict(result.Error)
+                : (IActionResult)Created(string.Empty, result.Success);
         }
         [Route("user/{login}/{password}")]
         [ProducesResponseType(typeof(LoginUserFoundDTO), (int)HttpStatusCode.OK)]
@@ -29,7 +29,7 @@ namespace GroceryExpressCart.API.Controllers
         {
             var loginUserQuery = new LoginUserQuery(userDTO.Login, userDTO.Password);
             var result = await _mediatr.Send(loginUserQuery);
-            return result.Failure ? NotFound(result) : (IActionResult)Ok(result);
+            return result.Failure ? NotFound(result.Error) : (IActionResult)Ok(result.Success);
         }
     }
 }
