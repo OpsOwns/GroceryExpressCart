@@ -16,5 +16,6 @@
         public int MemberShipId { get; set; }
         public string Email { get; set; }
         public string Login { get; set; }
+        public JwtDTO JwtDTO { get; set; }
     }
 }

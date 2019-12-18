@@ -3,6 +3,6 @@
     public class PasswordSettings
     {
         public string SecretKey { get; set; }
-        public bool IsHashed { get; set; }
+        public bool GenerateSalt { get; set; }
     }
 }

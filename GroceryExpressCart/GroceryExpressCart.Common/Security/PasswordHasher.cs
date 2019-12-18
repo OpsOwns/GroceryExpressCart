@@ -9,7 +9,8 @@ namespace GroceryExpressCart.Common.Security
             _settings = settings;
         public string HashPassword(string password)
         {
-            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, _settings.SecretKey);
+            string hashedPassword = _settings.GenerateSalt ? BCrypt.Net.BCrypt.HashPassword(password, BCrypt.Net.BCrypt.GenerateSalt()):
+                                    BCrypt.Net.BCrypt.HashPassword(password, _settings.SecretKey);
             if (hashedPassword.IsEmpty())
                 throw new GroceryException(nameof(Parameters.INVALID_HASH_PASSWORD), "Password hash invalid");
             return hashedPassword;

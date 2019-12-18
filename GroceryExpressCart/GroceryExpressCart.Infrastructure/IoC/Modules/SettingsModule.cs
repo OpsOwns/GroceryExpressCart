@@ -16,8 +16,10 @@ namespace GroceryExpressCart.Infrastructure.IoC.Modules
         {
             builder.RegisterInstance(_configuration.GetOptions<DatabaseSettings>("GroceryDB")).
                 SingleInstance();
-            builder.RegisterInstance(_configuration.GetOptions<PasswordSettings>("Security"))
-                .SingleInstance();
+            builder.RegisterInstance(_configuration.GetOptions<PasswordSettings>("Security")).
+                SingleInstance();
+            builder.RegisterInstance(_configuration.GetOptions<JwtSettings>("JwtSettings")).
+                SingleInstance();
         }
     }
 }
