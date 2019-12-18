@@ -3,12 +3,10 @@ using GroceryExpressCart.Common.Exceptions;
 using GroceryExpressCart.Common.Extension;
 using GroceryExpressCart.Common.Security;
 using GroceryExpressCart.Core.Domain;
-using GroceryExpressCart.Core.Events;
 using GroceryExpressCart.Core.Repository;
 using GroceryExpressCart.Core.ValueObject;
 using GroceryExpressCart.Infrastructure.Command;
 using MediatR;
-using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,7 +26,7 @@ namespace GroceryExpressCart.Infrastructure.Handler
         }
         public async Task<Result> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var password = Password.Create(_passwordHasher.HashPassword(request.Password));
+            var password = Password.Create(request.Password, _passwordHasher);
             var email = Email.Create(request.Email);
             var login = Login.Create(request.Login);
             var result = Result.Combine(email, password, login);

@@ -23,13 +23,14 @@ namespace GroceryExpressCart.API.Controllers
                 ? Conflict(result.Error)
                 : (IActionResult)Created(string.Empty, result.Success);
         }
+        [HttpGet]
         [Route("user/{login}/{password}")]
         [ProducesResponseType(typeof(LoginUserFoundDTO), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> LoginUser([FromHeader] LoginUserDTO userDTO)
         {
             var loginUserQuery = new LoginUserQuery(userDTO.Login, userDTO.Password);
             var result = await _mediatr.Send(loginUserQuery);
-            return result.Failure ? NotFound(result.Error) : (IActionResult)Ok(result.Success);
+            return result.Failure ? NotFound(result.Error) : (IActionResult)Ok(result.Value);
         }
     }
 }

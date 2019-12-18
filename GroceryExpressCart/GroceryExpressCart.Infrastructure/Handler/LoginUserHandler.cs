@@ -8,6 +8,7 @@ using GroceryExpressCart.Core.Repository;
 using GroceryExpressCart.Core.ValueObject;
 using GroceryExpressCart.Infrastructure.DTO;
 using GroceryExpressCart.Infrastructure.Query;
+using GroceryExpressCart.Infrastructure.SeedWork;
 using MediatR;
 using System.Linq;
 using System.Threading;
@@ -20,28 +21,32 @@ namespace GroceryExpressCart.Infrastructure.Handler
         private readonly IMemberShipRepository _memberShipRepository;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IMapper _mapper;
-        IDomainEventDispatcher _domainEventDispatcher;
-        public LoginUserHandler(IMemberShipRepository memberShipRepository,
+        private readonly IDomainEventDispatcher _domainEventDispatcher;
+        private readonly IJwtGenerator _jwtGenerator;
+        public LoginUserHandler(IMemberShipRepository memberShipRepository, IJwtGenerator jwtGenerator,
             IPasswordHasher passwordHasher, IMapper mapper, IDomainEventDispatcher domainEventDispatcher)
         {
             _memberShipRepository = memberShipRepository;
             _passwordHasher = passwordHasher;
             _mapper = mapper;
             _domainEventDispatcher = domainEventDispatcher;
+            _jwtGenerator = jwtGenerator;
         }
         public async Task<Result<LoginUserFoundDTO>> Handle(LoginUserQuery request, CancellationToken cancellationToken)
         {
             var login = Login.Create(request.Login);
-            var password = Password.Create(_passwordHasher.HashPassword(request.Password));
+            var password = Password.Create(request.Password,_passwordHasher);
             var result = Result.Combine(login, password);
             if (result.Failure)
                 throw new GroceryException(result.Error);
             var memberShip = new MemberShip(login.Value, password.Value);
             var user = await _memberShipRepository.GetMemberShipByLoginPassword(memberShip.Login.LoginValue, memberShip.Password.PasswordValue);
             await _domainEventDispatcher.DispatchAsync(memberShip.DomainEvents.ToArray());
+            var loggedUser = _mapper.Map<LoginUserFoundDTO>(user);
+            loggedUser.JwtDTO = _jwtGenerator.Generate(user);
             return user is null
                 ? Result.Fail<LoginUserFoundDTO>(nameof(Parameters.INVALID_USER))
-                : Result.Ok(_mapper.Map<LoginUserFoundDTO>(user));
+                : Result.Ok(loggedUser);
         }
     }
 }
