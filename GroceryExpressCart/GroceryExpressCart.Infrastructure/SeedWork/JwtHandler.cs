@@ -12,25 +12,25 @@ namespace GroceryExpressCart.Infrastructure.SeedWork
 {
     public class JwtGenerator : IJwtGenerator
     {
-        private JwtSettings _jwtSettings;
+        private readonly JwtSettings _jwtSettings;
         public JwtGenerator(JwtSettings jwtSettings) => _jwtSettings = jwtSettings;
         public JwtDTO Generate(MemberShip memberShip)
         {
-            var now = DateTime.UtcNow;
+            var dateNow = DateTime.UtcNow;
             var claims = new Claim[]
             {
             new Claim(JwtRegisteredClaimNames.Sub, memberShip.Id.ToString()),
-            new Claim(JwtRegisteredClaimNames.UniqueName, memberShip.Id.ToString()),
+            new Claim(JwtRegisteredClaimNames.UniqueName, memberShip.Login.LoginValue),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim(JwtRegisteredClaimNames.Iat, now.ToTimeStamp().ToString(), ClaimValueTypes.Integer64)
+            new Claim(JwtRegisteredClaimNames.Iat, dateNow.ToTimeStamp().ToString(), ClaimValueTypes.Integer64)
             };
-            var expires = now.AddMinutes(_jwtSettings.ExpireMinutes);
+            var expires = dateNow.AddMinutes(_jwtSettings.ExpireMinutes);
             var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key)),
                 SecurityAlgorithms.HmacSha256);
             var jwt = new JwtSecurityToken(
                 issuer: _jwtSettings.Issuer,
                 claims: claims,
-                notBefore: now,
+                notBefore: dateNow,
                 expires: expires,
                 signingCredentials: signingCredentials
             );

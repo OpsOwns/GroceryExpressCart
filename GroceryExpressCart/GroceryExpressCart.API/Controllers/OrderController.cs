@@ -1,12 +1,15 @@
 ﻿using GroceryExpressCart.Infrastructure.Command;
 using GroceryExpressCart.Infrastructure.DTO;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Threading.Tasks;
 
 namespace GroceryExpressCart.API.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("order")]
     public class OrderController : BaseController
     {
