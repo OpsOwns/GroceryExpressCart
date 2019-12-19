@@ -44,6 +44,7 @@ namespace GroceryExpressCart.API
             {
                 schema.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 schema.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                schema.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(cfg =>
             {
                 cfg.SaveToken = true;
