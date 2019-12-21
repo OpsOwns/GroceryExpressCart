@@ -37,7 +37,6 @@ namespace GroceryExpressCart.Common.SeedWork
                     errorCode = e.Code;
                     break;
             }
-            context.Response.Clear();
             var response = new { code = errorCode, message = exception.Message };
             var payload = JsonConvert.SerializeObject(response);
             context.Response.ContentType = "application/json";
