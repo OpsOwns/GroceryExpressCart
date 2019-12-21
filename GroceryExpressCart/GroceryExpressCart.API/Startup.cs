@@ -1,4 +1,5 @@
 using Autofac;
+using FluentValidation;
 using GroceryExpressCart.Common.Exceptions;
 using GroceryExpressCart.Common.Extension;
 using GroceryExpressCart.Common.Security;
@@ -14,7 +15,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System;
 using System.Text;
 
 namespace GroceryExpressCart.API
@@ -23,7 +23,7 @@ namespace GroceryExpressCart.API
     {
         public Startup(IConfiguration configuration) => Configuration = configuration;
         public IConfiguration Configuration { get; }
-        public void ConfigureServices(IServiceCollection services, IWebHostEnvironment en)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
             services.AddControllers(options =>
@@ -41,6 +41,9 @@ namespace GroceryExpressCart.API
             {
                 details.Map<GroceryValidationException>(exception =>
                 new InvalidCommandProblemDetails(exception));
+                details.Map<ValidationException>(exception =>
+       new InvalidCommandProblemDetails(exception));
+                
             });
             services.AddMiddlewareAnalysis();
             var jwtSettings = Configuration.GetOptions<JwtSettings>("JwtSettings");
