@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System;
 using System.Text;
 
 namespace GroceryExpressCart.API
@@ -22,8 +23,9 @@ namespace GroceryExpressCart.API
     {
         public Startup(IConfiguration configuration) => Configuration = configuration;
         public IConfiguration Configuration { get; }
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IWebHostEnvironment en)
         {
+            services.AddMvc();
             services.AddControllers(options =>
             options.RespectBrowserAcceptHeader = true).
             AddNewtonsoftJson(options =>
@@ -36,8 +38,10 @@ namespace GroceryExpressCart.API
                AddEntityFrameworkInMemoryDatabase().
                AddDbContext<GroceryContext>();
             services.AddProblemDetails(details =>
-            details.Map<GroceryValidationException>(exception =>
-            new InvalidCommandProblemDetails(exception)));
+            {
+                details.Map<GroceryValidationException>(exception =>
+                new InvalidCommandProblemDetails(exception));
+            });
             services.AddMiddlewareAnalysis();
             var jwtSettings = Configuration.GetOptions<JwtSettings>("JwtSettings");
             services.AddAuthentication(schema =>

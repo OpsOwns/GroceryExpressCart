@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GroceryExpressCart.Common\GroceryExpressCart.Common.csproj" />
     <ProjectReference Include="..\GroceryExpressCart.Core\GroceryExpressCart.Core.csproj" />
+    <ProjectReference Include="..\GroceryExpressCart.Infrastructure\GroceryExpressCart.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
