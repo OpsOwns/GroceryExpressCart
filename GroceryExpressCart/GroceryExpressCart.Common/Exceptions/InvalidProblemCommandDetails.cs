@@ -8,7 +8,7 @@ namespace GroceryExpressCart.Common.Exceptions
         public InvalidCommandProblemDetails(GroceryValidationException invalidCommandException)
         {
             Title = invalidCommandException.Code;
-            Status = StatusCodes.Status400BadRequest;
+            Status = StatusCodes.Status403Forbidden;
             Detail = invalidCommandException.Details;
             Type = "GroceryAPI";
         }

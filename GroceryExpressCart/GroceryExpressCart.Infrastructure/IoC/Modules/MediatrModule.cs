@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Reflection;
 using Autofac;
+using FluentValidation;
 using GroceryExpressCart.Infrastructure.Command;
+using GroceryExpressCart.Infrastructure.SeedWork;
 using MediatR;
 using MediatR.Pipeline;
 using Module = Autofac.Module;
@@ -16,7 +18,8 @@ namespace GroceryExpressCart.Infrastructure.IoC.Modules
             var mediatrOpenTypes = new[]
             {
             typeof(IRequestHandler<,>),
-            typeof(INotificationHandler<>)
+            typeof(INotificationHandler<>),
+            typeof(IValidator<>)
         };
 
             foreach (var mediatrOpenType in mediatrOpenTypes)
@@ -29,7 +32,7 @@ namespace GroceryExpressCart.Infrastructure.IoC.Modules
 
             builder.RegisterGeneric(typeof(RequestPostProcessorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
             builder.RegisterGeneric(typeof(RequestPreProcessorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
-
+            builder.RegisterGeneric(typeof(ValidatonBehaviour<,>)).As(typeof(IPipelineBehavior<,>));
             builder.Register<ServiceFactory>(component =>
             {
                 var componentContext = component.Resolve<IComponentContext>();
