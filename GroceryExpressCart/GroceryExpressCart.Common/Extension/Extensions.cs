@@ -1,6 +1,4 @@
-﻿using GroceryExpressCart.Common.SeedWork;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using System;
 
 namespace GroceryExpressCart.Common.Extension
@@ -16,9 +14,7 @@ namespace GroceryExpressCart.Common.Extension
             configuration.GetSection(section).Bind(model);
             return model;
         }
-        public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder builder)
-       => builder.UseMiddleware<GlobalHandleMiddleware>();
-
+        public static string ToStringDate(this DateTime dateTime) => dateTime.Date.ToString("yyyyMMdd");
         public static long ToTimeStamp(this DateTime dateTime)
         {
             var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
