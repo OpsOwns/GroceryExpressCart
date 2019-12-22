@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroceryExpressCart.Common",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroceryExpressCart.Tests", "GroceryExpressCart.Tests\GroceryExpressCart.Tests.csproj", "{346D1BB2-7F5C-4EF6-AB6E-F5854C916145}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryExpressCart.Infrastructure", "GroceryExpressCart.Infrastructure\GroceryExpressCart.Infrastructure.csproj", "{9D23F034-5C94-4E64-B5D4-7A2C7D4A234D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroceryExpressCart.Infrastructure", "GroceryExpressCart.Infrastructure\GroceryExpressCart.Infrastructure.csproj", "{9D23F034-5C94-4E64-B5D4-7A2C7D4A234D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryExpressCart.IntegrationTests", "GroceryExpressCart.IntegrationTests\GroceryExpressCart.IntegrationTests.csproj", "{E76C1841-B4D4-42D3-A4C7-74AB3B3D0B1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{9D23F034-5C94-4E64-B5D4-7A2C7D4A234D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D23F034-5C94-4E64-B5D4-7A2C7D4A234D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D23F034-5C94-4E64-B5D4-7A2C7D4A234D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E76C1841-B4D4-42D3-A4C7-74AB3B3D0B1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E76C1841-B4D4-42D3-A4C7-74AB3B3D0B1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E76C1841-B4D4-42D3-A4C7-74AB3B3D0B1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E76C1841-B4D4-42D3-A4C7-74AB3B3D0B1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

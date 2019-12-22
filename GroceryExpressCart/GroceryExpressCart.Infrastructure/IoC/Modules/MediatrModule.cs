@@ -18,8 +18,7 @@ namespace GroceryExpressCart.Infrastructure.IoC.Modules
             var mediatrOpenTypes = new[]
             {
             typeof(IRequestHandler<,>),
-            typeof(INotificationHandler<>),
-            typeof(IValidator<>)
+            typeof(INotificationHandler<>)
         };
 
             foreach (var mediatrOpenType in mediatrOpenTypes)

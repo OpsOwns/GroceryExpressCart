@@ -42,9 +42,8 @@ namespace GroceryExpressCart.API
                 details.Map<GroceryValidationException>(exception =>
                 new InvalidCommandProblemDetails(exception));
                 details.Map<ValidationException>(exception =>
-                new InvalidCommandProblemDetails(exception));          
+                new InvalidCommandProblemDetails(exception));            
             });
-            services.AddMiddlewareAnalysis();
             var jwtSettings = Configuration.GetOptions<JwtSettings>("JwtSettings");
             services.AddAuthentication(schema =>
             {
