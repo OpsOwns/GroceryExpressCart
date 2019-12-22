@@ -13,7 +13,7 @@ namespace GroceryExpressCart.API.Controllers
     {
         public MemberShipController(IMediator mediatr) : base(mediatr) { }
         [HttpPost]
-        [Route("user/register")]
+        [Route("register")]
         [ProducesResponseType(typeof(CreateUserCommand), (int)HttpStatusCode.Created)]
         public async Task<IActionResult> CreateUser([FromBody] UserDTO userDTO)
         {
@@ -24,7 +24,7 @@ namespace GroceryExpressCart.API.Controllers
                 : (IActionResult)Created(string.Empty, result.Success);
         }
         [HttpGet]
-        [Route("user/{login}/{password}")]
+        [Route("{login}/{password}")]
         [ProducesResponseType(typeof(LoginUserFoundDTO), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> LoginUser([FromHeader] LoginUserDTO userDTO)
         {

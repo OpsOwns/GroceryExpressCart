@@ -1,4 +1,5 @@
 using Autofac.Extensions.DependencyInjection;
+using GroceryExpressCart.Common.Logs;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using System.IO;
@@ -11,7 +12,7 @@ namespace GroceryExpressCart.API
         public static async Task Main(string[] args) =>
               await CreateHostBuilder(args).Build().RunAsync();
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-             Host.CreateDefaultBuilder(args)
+             Host.CreateDefaultBuilder(args).UseLoging()
          .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                  .ConfigureWebHostDefaults(webBuilder =>
                  {
