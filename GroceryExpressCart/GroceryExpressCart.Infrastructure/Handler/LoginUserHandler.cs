@@ -49,14 +49,15 @@ namespace GroceryExpressCart.Infrastructure.Handler
             var memberShip = new MemberShip(login.Value, password.Value);
             var user = await _memberShipRepository.GetMemberShipByLoginPassword(memberShip.Login.LoginValue, memberShip.Password.PasswordValue);
             await _domainEventDispatcher.DispatchAsync(memberShip.DomainEvents.ToArray());
+            if (user is null)
+            {
+                _logger.Error(nameof(Parameters.INVALID_USER), DateTime.Now);
+                return Result.Fail<LoginUserFoundDTO>(nameof(Parameters.INVALID_USER));
+            }
             var loggedUser = _mapper.Map<LoginUserFoundDTO>(user);
             loggedUser.JwtDTO = _jwtGenerator.Generate(user);
-            if (user is null)
-                _logger.Error(nameof(Parameters.INVALID_USER), DateTime.Now);
             _logger.Information($"User logged {loggedUser.MemberShipId} {DateTime.Now.ToStringDate()}");
-            return user is null
-                ? Result.Fail<LoginUserFoundDTO>(nameof(Parameters.INVALID_USER))
-                : Result.Ok(loggedUser);
+            return Result.Ok(loggedUser);
         }
     }
 }

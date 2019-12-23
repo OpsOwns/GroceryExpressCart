@@ -1,0 +1,23 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "GroceryDB": {
+    "ConnectionString": "Server=DESKTOP-5Q7NM1A\\OPSDB;Database=GroceryExpress;Trusted_Connection=True;",
+    "InMemory": true
+  },
+  "Security": {
+    "SecretKey": "$2a$11$g5TXNWtUPMWzJSfowkLNB.",
+    "GenerateSalt": false
+  },
+  "JwtSettings": {
+    "Key": "bX5GlappmArWQKg9WoPLiqReEvdR1QqI",
+    "Issuer": "http://localhost:58166/",
+    "ExpireMinutes": "120"
+  },
+  "AllowedHosts": "*"
+}
