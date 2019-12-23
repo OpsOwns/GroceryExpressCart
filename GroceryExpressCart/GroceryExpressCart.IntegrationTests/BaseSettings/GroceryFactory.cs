@@ -1,13 +1,17 @@
 ﻿using Autofac.Extensions.DependencyInjection;
 using GroceryExpressCart.API;
-using GroceryExpressCart.Common.Logs;
+using GroceryExpressCart.Common.Loging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
+using System;
 using System.IO;
+using System.Net.Http;
+using System.Text;
 
-namespace GroceryExpressCart.IntegrationTests
+namespace GroceryExpressCart.IntegrationTests.BaseSettings
 {
     public class GroceryFactory : WebApplicationFactory<GroceryFactory>
     {
@@ -17,8 +21,15 @@ namespace GroceryExpressCart.IntegrationTests
               .UseServiceProviderFactory(new AutofacServiceProviderFactory()).
               UseContentRoot(Directory.GetCurrentDirectory()).
               ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>().
-              UseConfiguration(new ConfigurationBuilder().AddJsonFile("appsettings.json").
+              UseConfiguration(new ConfigurationBuilder().AddJsonFile("BaseSettings\\appTestsettings.json").
               Build()));
+        }
+        public static StringContent GetPayload(object source)
+        {
+            if (source is null)
+                throw new ArgumentException(nameof(source));
+            var json = JsonConvert.SerializeObject(source);
+            return new StringContent(json, Encoding.UTF8, "application/json");
         }
     }
 }
