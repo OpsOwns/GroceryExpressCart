@@ -9,6 +9,7 @@ using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,7 +26,8 @@ namespace GroceryExpressCart.API
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddCors();
             services.AddControllers(options =>
             options.RespectBrowserAcceptHeader = true).
             AddNewtonsoftJson(options =>
@@ -42,7 +44,7 @@ namespace GroceryExpressCart.API
                 details.Map<GroceryValidationException>(exception =>
                 new InvalidCommandProblemDetails(exception));
                 details.Map<ValidationException>(exception =>
-                new InvalidCommandProblemDetails(exception));            
+                new InvalidCommandProblemDetails(exception));
             });
             var jwtSettings = Configuration.GetOptions<JwtSettings>("JwtSettings");
             services.AddAuthentication(schema =>
@@ -73,10 +75,8 @@ namespace GroceryExpressCart.API
             app.UseProblemDetails();
             app.UseAuthorization();
             app.UseAuthentication();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseCors(x => x.WithOrigins("http://localhost:4200/").AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }
