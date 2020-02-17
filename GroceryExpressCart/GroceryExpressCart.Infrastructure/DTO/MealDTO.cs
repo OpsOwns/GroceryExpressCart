@@ -4,5 +4,6 @@
     {
         public string Meal { get; set; }
         public decimal Price { get; set; }
+        public string Url { get; set; }
     }
 }
