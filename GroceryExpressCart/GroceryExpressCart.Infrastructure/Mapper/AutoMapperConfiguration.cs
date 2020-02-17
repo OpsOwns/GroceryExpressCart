@@ -13,6 +13,9 @@ namespace GroceryExpressCart.Infrastructure.Mapper
                 ForMember(id => id.MemberShipId, dest => dest.MapFrom(map => map.Id)).
                 ForMember(login => login.Login, dest => dest.MapFrom(map => map.Login.LoginValue)).
                 ForMember(email => email.Email, dest => dest.MapFrom(map => map.Email.EmailValue));
+                cfg.CreateMap<Meal, MealDTO>().ForMember(meal => meal.Meal, dest => dest.MapFrom(map => map.MealName)).
+                ForMember(price => price.Price, dest => dest.MapFrom(map => map.Price.Money)).
+                ForMember(img => img.Url, dest => dest.MapFrom(map => map.ImageDish.ImageDishValue));
             }).CreateMapper();
     }
 }

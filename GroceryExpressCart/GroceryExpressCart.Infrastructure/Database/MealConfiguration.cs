@@ -15,6 +15,7 @@ namespace GroceryExpressCart.Infrastructure.Database
             builder.Property(key => key.Id).UseIdentityColumn().ValueGeneratedOnAdd();
             builder.OwnsOne(value => value.Price).Property(_ => _.Money).HasColumnName("Price").IsRequired();
             builder.Property(value => value.MealName).HasColumnName("Meal").HasMaxLength(320).IsRequired();
+            builder.OwnsOne(value => value.ImageDish).Property(value => value.ImageDishValue).HasColumnName("ImageUrl");
             builder.Property(date => date.CreatedAt).HasColumnType(Parameters.MSSQL_DATE).IsRequired();
             builder.Property(dateModify => dateModify.ModifyAt).HasColumnType(Parameters.MSSQL_DATE).IsRequired();
         }

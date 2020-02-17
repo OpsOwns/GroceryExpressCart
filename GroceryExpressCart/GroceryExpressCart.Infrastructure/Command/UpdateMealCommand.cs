@@ -3,16 +3,19 @@ using MediatR;
 
 namespace GroceryExpressCart.Infrastructure.Command
 {
-    public class CreateMealCommand : IRequest<Result>
+    public class UpdateMealCommand : IRequest<Result>
     {
+        public int MealId { get; }
         public string MealName { get; }
         public decimal Price { get; }
-        public string  Url { get; }
-        public CreateMealCommand(string mealName, decimal price, string url)
+        public string Url { get; }
+        public UpdateMealCommand(int mealId, string mealName, decimal price, string url)
         {
-            Price = price;
+            MealId = mealId;
             MealName = mealName;
+            Price = price;
             Url = url;
         }
+
     }
 }
