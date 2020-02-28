@@ -1,4 +1,5 @@
-﻿using GroceryExpressCart.Infrastructure.Command;
+﻿using GroceryExpressCart.Common.SeedWork;
+using GroceryExpressCart.Infrastructure.Command;
 using GroceryExpressCart.Infrastructure.DTO;
 using GroceryExpressCart.Infrastructure.Query;
 using MediatR;
@@ -58,10 +59,10 @@ namespace GroceryExpressCart.API.Controllers
           : (IActionResult)Created(string.Empty, result.Success);
         }
         [HttpGet]
-        [Route("getMeals/{pageNumber}/{pageSize}")]
-        public async Task<IActionResult> GetMeals(int pageNumber, int pageSize)
+        [Route("Meals")]
+        public async Task<IActionResult> GetMeals([FromQuery] PageParams pageParams)
         {
-            var command = new PaginationMealQuery(pageNumber, pageSize);
+            var command = new PaginationMealQuery(pageParams.PageSize, pageParams.PageNumber);
             var result = await _mediatr.Send(command);
             return result.Failure
           ? Conflict(result)

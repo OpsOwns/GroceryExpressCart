@@ -5,17 +5,12 @@ using System.Collections.Generic;
 
 namespace GroceryExpressCart.Infrastructure.Query
 {
-    public class PaginationMealQuery : IRequest<Result<IEnumerable<MealDTO>>>
+    public class PaginationMealQuery : IRequest<Result<IEnumerable<MealsDTO>>>
     {
-        public PaginationMealQuery()
+        public PaginationMealQuery(int pageSize, int pageNumber)
         {
-            PageNumber = 1;
-            PageSize = 100;
-        }
-        public PaginationMealQuery(int pageNumber, int pageSize)
-        {
-            PageNumber = pageNumber;
             PageSize = pageSize;
+            PageNumber = pageNumber;
         }
         public int PageNumber { get; }
         public int PageSize { get; }
