@@ -28,11 +28,9 @@ namespace GroceryExpressCart.Infrastructure.Repository
         public async Task<IEnumerable<Meal>> GetMeals() =>
             await _context.Meal.ToListAsync();
 
-        public async Task<IEnumerable<Meal>> GetMeals(PaginationQuery paginationQuery = null)
+        public async Task<PagedList<Meal>> GetMeals(PageParams pageParams)
         {
-            return paginationQuery == null
-                ? await _context.Meal.ToListAsync()
-                : await _context.Meal.Skip((paginationQuery.PageNumber - 1) * paginationQuery.PageSize).Take(paginationQuery.PageSize).ToListAsync();
+            return await PagedList<Meal>.CreateAsync(_context.Meal, pageParams.PageNumber, pageParams.PageSize);
         }
 
         public async Task Update(Meal meal)

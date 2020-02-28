@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace GroceryExpressCart.Infrastructure.Handler
 {
-    public class PaginationMealHandler : IRequestHandler<PaginationMealQuery, Result<IEnumerable<MealDTO>>>
+    public class PaginationMealHandler : IRequestHandler<PaginationMealQuery, Result<IEnumerable<MealsDTO>>>
     {
         private readonly IMealRepository _repository;
         private readonly IMapper _mapper;
@@ -21,11 +21,11 @@ namespace GroceryExpressCart.Infrastructure.Handler
             _mapper = mapper;
         }
 
-        public async Task<Result<IEnumerable<MealDTO>>> Handle(PaginationMealQuery request, CancellationToken cancellationToken)
+        public async Task<Result<IEnumerable<MealsDTO>>> Handle(PaginationMealQuery request, CancellationToken cancellationToken)
         {
-            var peginationQuery = new PaginationQuery(request.PageNumber, request.PageSize);
+            var peginationQuery = new PageParams(request.PageSize, request.PageNumber);
             var result = await _repository.GetMeals(peginationQuery);
-            var map = _mapper.Map<IEnumerable<MealDTO>>(result);
+            var map = _mapper.Map<IEnumerable<MealsDTO>>(result);
             return Result.Ok(map);
         }
     }

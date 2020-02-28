@@ -8,7 +8,7 @@ namespace GroceryExpressCart.Core.Repository
     public interface IMealRepository : IRepository
     {
         Task Add(Meal meal);
-        Task<IEnumerable<Meal>> GetMeals(PaginationQuery paginationQuery = null);
+        Task<PagedList<Meal>> GetMeals(PageParams paginationQuery = null);
         Task<Meal> GetMealById(int mealId);
         Task Delete(int meailId);
         Task Update(Meal meal);
