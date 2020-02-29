@@ -2,7 +2,9 @@
 using GroceryExpressCart.Core.Repository;
 using GroceryExpressCart.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GroceryExpressCart.Infrastructure.Repository
@@ -16,8 +18,15 @@ namespace GroceryExpressCart.Infrastructure.Repository
             await _context.Order.AddAsync(order);
             await _context.SaveChangesAsync();
         }
+        public async Task AddRange(IEnumerable<Order> order)
+        {
+            await _context.Order.AddRangeAsync(order);
+            await _context.SaveChangesAsync();
+        }
         public async Task<Order> GetOrder(int orderId) =>
             await _context.Order.FirstOrDefaultAsync(value => value.Id == orderId);
-        public async Task<IEnumerable<Order>> GetOrders() => await _context.Order.ToListAsync();
+        public async Task<IEnumerable<Order>> GetOrders() =>
+            await _context.Order.Where(d => d.DateOrder.Date == DateTime.Now.Date).
+            Include(x => x.Meal).ToListAsync();
     }
 }
