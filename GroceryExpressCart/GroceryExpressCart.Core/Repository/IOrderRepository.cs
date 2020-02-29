@@ -7,6 +7,7 @@ namespace GroceryExpressCart.Core.Repository
     public interface IOrderRepository : IRepository
     {
         Task Add(Order order);
+        Task AddRange(IEnumerable<Order> orders);
         Task<IEnumerable<Order>> GetOrders();
         Task<Order> GetOrder(int orderId);
     }

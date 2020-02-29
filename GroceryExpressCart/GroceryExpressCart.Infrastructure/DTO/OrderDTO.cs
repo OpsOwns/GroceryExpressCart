@@ -2,7 +2,7 @@
 {
     public class OrderDTO
     {
-        public int MealId { get; set; }
+        public int [] MealsId { get; set; }
         public int MemberShipId { get; set; }
     }
 }

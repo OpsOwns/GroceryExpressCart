@@ -16,8 +16,8 @@
         }
         public PageParams(int pageSize, int pageNumber)
         {
-            PageNumber = pageNumber;
-            PageSize = pageSize;
+            PageNumber = pageNumber == 0 ? PageNumber : pageNumber;
+            PageSize = pageSize == 0 ? this.pageSize : pageSize;
         }
     }
 }
