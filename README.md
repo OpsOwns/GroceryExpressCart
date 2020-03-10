@@ -12,3 +12,5 @@ MediatR (CQRS) :star:
 Automapper :star:
 
 Entity Framework :star:
+
+Xunit :star:
