@@ -7,8 +7,6 @@ Backend for application where we can order food. The data is stored in mssql ser
 ## Stack:
 .NET Core 3.1 :star:
 
-DDD :star:
-
 MediatR (CQRS) :star:
 
 Automapper :star:
